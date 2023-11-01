@@ -1,2 +1,1 @@
-# https://reqres.in/
-Автотесты на питоне UI & API
+Автотесты на питоне UI & API для https://reqres.in/
