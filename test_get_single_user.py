@@ -40,17 +40,17 @@ def test_get_single_user_not_found_status_code():
 @pytest.mark.parametrize('method', ['post', 'delete', 'put', 'patch', 'options'])
 def test_get_single_user_wrong_method(method):
     if method == 'post':
-        response = requests.post(base_url_get_list_users)
+        response = requests.post(base_url_get_single_user)
         assert response.status_code == 201, f"Ошибка: статус код для метода {method} неверный!"
     elif method == 'delete':
-        response = requests.delete(base_url_get_list_users)
+        response = requests.delete(base_url_get_single_user)
         assert response.status_code == 204, f"Ошибка: статус код для метода {method} неверный!"
     elif method == 'put':
-        response = requests.put(base_url_get_list_users)
-        assert response.status_code == 404, f"Ошибка: статус код для метода {method} неверный!"
+        response = requests.put(base_url_get_single_user)
+        assert response.status_code == 200, f"Ошибка: статус код для метода {method} неверный!"
     elif method == 'patch':
-        response = requests.patch(base_url_get_list_users)
-        assert response.status_code == 404, f"Ошибка: статус код для метода {method} неверный!"
+        response = requests.patch(base_url_get_single_user)
+        assert response.status_code == 200, f"Ошибка: статус код для метода {method} неверный!"
     elif method == 'options':
-        response = requests.options(base_url_get_list_users)
+        response = requests.options(base_url_get_single_user)
         assert response.status_code == 204, f"Ошибка: статус код для метода {method} неверный!"
