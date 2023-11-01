@@ -1,6 +1,8 @@
 import pytest
 import requests
 
+from settings import *
+
 
 @pytest.mark.positive
 @pytest.mark.parametrize("page_number, expected_status", [(2, 200)])
@@ -48,17 +50,17 @@ def test_list_users_wrong_status_code(get_list_users, page_number, expected_stat
 @pytest.mark.parametrize('method', ['post', 'delete', 'put', 'patch', 'options'])
 def test_list_users_wrong_method(method):
     if method == 'post':
-        response = requests.post(base_url)
+        response = requests.post(base_url_get_list_users)
         assert response.status_code == 201, f"Ошибка: статус код для метода {method} неверный!"
     elif method == 'delete':
-        response = requests.delete(base_url)
+        response = requests.delete(base_url_get_list_users)
         assert response.status_code == 204, f"Ошибка: статус код для метода {method} неверный!"
     elif method == 'put':
-        response = requests.put(base_url)
+        response = requests.put(base_url_get_list_users)
         assert response.status_code == 404, f"Ошибка: статус код для метода {method} неверный!"
     elif method == 'patch':
-        response = requests.patch(base_url)
+        response = requests.patch(base_url_get_list_users)
         assert response.status_code == 404, f"Ошибка: статус код для метода {method} неверный!"
     elif method == 'options':
-        response = requests.options(base_url)
+        response = requests.options(base_url_get_list_users)
         assert response.status_code == 204, f"Ошибка: статус код для метода {method} неверный!"
