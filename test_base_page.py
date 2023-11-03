@@ -120,6 +120,7 @@ def test_get_single_resource_not_found(browser, get_single_resource_not_found):
     try:
         base_page.open()
         base_page.click_btn_get_single_resource_not_found()
+        sleep(3)
 
         response_code_from_site = base_page.get_response_code_from_site()
         expected_code_from_api = get_single_resource_not_found.status_code
