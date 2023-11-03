@@ -22,6 +22,8 @@ class BasePage:
         BTN_POST_REGISTER_SUCCESSFUL = (By.CSS_SELECTOR, 'li[data-id="register-successful"][data-key="endpoint"]')
         BTN_POST_REGISTER_UNSUCCESSFUL = (By.CSS_SELECTOR, 'li[data-id="register-unsuccessful"][data-key="endpoint"]')
         BTN_POST_LOGIN_SUCCESSFUL = (By.CSS_SELECTOR, 'li[data-id="login-successful"][data-key="endpoint"]')
+        BTN_POST_LOGIN_UNSUCCESSFUL = (By.CSS_SELECTOR, 'li[data-id="login-unsuccessful"][data-key="endpoint"]')
+        BTN_GET_DELAYED_RESPONSE = (By.CSS_SELECTOR, 'li[data-id="delay"][data-key="endpoint"]')
 
         RESPONSE_CODE = (By.CSS_SELECTOR, 'span[class*="response-code"]')
         OUTPUT_RESPONSE_FROM_SITE = (By.CSS_SELECTOR, 'pre[data-key="output-response"]')
@@ -73,15 +75,11 @@ class BasePage:
     def click_btn_post_login_successful(self):
         self.wait.until(EC.visibility_of_element_located(self.Locators.BTN_POST_LOGIN_SUCCESSFUL)).click()
 
+    def click_btn_post_login_unsuccessful(self):
+        self.wait.until(EC.visibility_of_element_located(self.Locators.BTN_POST_LOGIN_UNSUCCESSFUL)).click()
 
-
-
-
-
-
-
-
-
+    def click_btn_get_delayed_response(self):
+        self.wait.until(EC.visibility_of_element_located(self.Locators.BTN_GET_DELAYED_RESPONSE)).click()
 
     def get_response_code_from_site(self):
         element = self.wait.until(EC.visibility_of_element_located(self.Locators.RESPONSE_CODE))
