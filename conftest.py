@@ -1,7 +1,9 @@
 import pytest
 import requests
-
-from settings import *
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from settings.settings import *
 
 
 @pytest.fixture
@@ -92,3 +94,15 @@ def patch_update(data):
 def delete_delete():
     response = requests.delete(base_url_delete_delete)
     return response
+
+
+@pytest.fixture
+def browser():
+    chrome_options = Options()
+    # chrome_options.add_argument("--lang=en-US")
+    driver_path = "c:\\Chromedriver\\chromedriver.exe"
+    service = Service(driver_path)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver.maximize_window()
+    yield driver
+    return driver
