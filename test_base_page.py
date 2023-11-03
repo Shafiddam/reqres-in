@@ -303,3 +303,48 @@ def test_post_login_successful(browser, post_login_successful, data):
         pytest.fail(f"ERROR: {str(e)}")
     finally:
         browser.quit()
+
+
+@pytest.mark.parametrize('data', [{"email": "peter@klaven"}])
+def test_post_login_unsuccessful(browser, post_login_unsuccessful, data):
+    base_page = BasePage(browser)
+
+    try:
+        base_page.open()
+        base_page.click_btn_post_login_unsuccessful()
+        sleep(3)
+
+        response_code_from_site = base_page.get_response_code_from_site()
+        expected_code_from_api = post_login_unsuccessful.status_code
+        assert response_code_from_site == expected_code_from_api, f"{error_status_code}"
+
+        output_response = base_page.get_output_response_from_site()
+        data = post_login_unsuccessful.json()
+        assert data == output_response, f"{error_output_response}"
+
+    except Exception as e:
+        pytest.fail(f"ERROR: {str(e)}")
+    finally:
+        browser.quit()
+
+
+def test_get_delayed_response(browser, get_delayed_response):
+    base_page = BasePage(browser)
+
+    try:
+        base_page.open()
+        base_page.click_btn_get_delayed_response()
+        sleep(4)
+
+        response_code_from_site = base_page.get_response_code_from_site()
+        expected_code_from_api = get_delayed_response.status_code
+        assert response_code_from_site == expected_code_from_api, f"{error_status_code}"
+
+        output_response = base_page.get_output_response_from_site()
+        data = get_delayed_response.json()
+        assert data == output_response, f"{error_output_response}"
+
+    except Exception as e:
+        pytest.fail(f"ERROR: {str(e)}")
+    finally:
+        browser.quit()
